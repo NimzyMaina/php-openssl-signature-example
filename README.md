@@ -2,6 +2,22 @@
 
 This example shows how to make and verify a signature using the Openssl Protocal.
 
+## Creating private & public keys
+
+In this command, we are using the openssl. You can use other tools e.g. keytool (ships with JDK - Java Developement Kit)
+
+Use following command in command prompt to generate a keypair with a self-signed certificate.
+
+```bash
+openssl genrsa -out private.pem 2048 -nodes
+```
+
+Once you are successful with the above command a file (private.pem) will be created on your present directory, proceed to export the public key from the keypair generated. The command below shows how to do it.
+
+```bash
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
+
 ## Make a signature
 
 ```php
