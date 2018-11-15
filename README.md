@@ -62,11 +62,11 @@ $signature = $headers['signature'];
 // Get the public key setup during the integration process Eg. Like how its done on Github settings
 $publicKey = openssl_pkey_get_public("file://".getcwd()."/public.pem");
 // Or just is a string
-// $pubString = "-----BEGIN PUBLIC KEY-----".PHP_EOL."PUBLIC-KEY".PHP_EOL."-----END PUBLIC KEY-----";
+// $publicKey = "-----BEGIN PUBLIC KEY-----".PHP_EOL."PUBLIC-KEY".PHP_EOL."-----END PUBLIC KEY-----";
 
 $plainText  = $_POST['countryCode'].$_POST['accountId'].$_POST['date'];
 
-$res = openssl_verify($plainText,base64_decode($signature),$pubString,OPENSSL_ALGO_SHA256);
+$res = openssl_verify($plainText,base64_decode($signature),$publicKey,OPENSSL_ALGO_SHA256);
 
 if($res == 1){
     // The signature is valid
